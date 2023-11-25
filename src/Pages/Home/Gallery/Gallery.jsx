@@ -16,7 +16,7 @@ const Gallery = () => {
                     </div>
                 </div>
                 <h2 className="z-10 p-5">
-                    <a rel="noopener noreferrer" href="#" className="font-medium text-md group-hover:underline lg:text-2xl lg:font-semibold text-gray-100">Fuga ea ullam earum assumenda, beatae labore eligendi.</a>
+                    <a rel="noopener noreferrer" href="#" className="font-medium text-md group-hover:underline lg:text-2xl lg:font-semibold text-gray-100">Art Community Comes Together for Climate Change Awareness through Eco-Friendly Installations.</a>
                 </h2>
             </div>
             <div className="relative flex items-end justify-start w-full text-left bg-center bg-cover cursor-pointer h-96 group bg-gray-500" style={{ backgroundImage: `url("https://i.ibb.co/grm6kgP/politics.webp")`}}>
@@ -29,7 +29,8 @@ const Gallery = () => {
                     </div>
                 </div>
                 <h2 className="z-10 p-5">
-                    <a rel="noopener noreferrer" href="#" className="font-medium text-md group-hover:underline text-gray-100"> Autem sunt tempora mollitia magnam non voluptates</a>
+                    <a rel="noopener noreferrer" href="#" className="font-medium text-md group-hover:underline text-gray-100"> 
+                    World leaders face escalating calls for decisive action on climate change</a>
                 </h2>
             </div>
             <div className="relative flex items-end justify-start w-full text-left bg-center bg-cover cursor-pointer h-96 group bg-gray-500" style={{ backgroundImage: `url("https://i.ibb.co/wrNx6G6/health.webp")`}}>
@@ -42,7 +43,7 @@ const Gallery = () => {
                     </div>
                 </div>
                 <h2 className="z-10 p-5">
-                    <a rel="noopener noreferrer" href="#" className="font-medium text-md group-hover:underline text-gray-100">Inventore reiciendis aliquam excepturi</a>
+                    <a rel="noopener noreferrer" href="#" className="font-medium text-md group-hover:underline text-gray-100">Resilient individuals inspire with their triumph over health challenges</a>
                 </h2>
             </div>
             <div className="relative flex items-end justify-start w-full text-left bg-center bg-cover cursor-pointer h-96 group bg-gray-500" style={{ backgroundImage: `url("https://i.ibb.co/zmxtRcC/Science.jpg")`}}>
@@ -55,7 +56,7 @@ const Gallery = () => {
                     </div>
                 </div>
                 <h2 className="z-10 p-5">
-                    <a rel="noopener noreferrer" href="#" className="font-medium text-md group-hover:underline text-gray-100">Officiis mollitia dignissimos commodi optio vero animi</a>
+                    <a rel="noopener noreferrer" href="#" className="font-medium text-md group-hover:underline text-gray-100"> Scientific breakthroughs ignite curiosity and inspire a quest for knowledge</a>
                 </h2>
             </div>
             <div className="relative flex items-end justify-start w-full text-left bg-center bg-cover cursor-pointer h-96 group bg-gray-500" style={{ backgroundImage: `url("https://i.ibb.co/2SMgkh9/sports.webp")`}}>
@@ -68,7 +69,7 @@ const Gallery = () => {
                     </div>
                 </div>
                 <h2 className="z-10 p-5">
-                    <a rel="noopener noreferrer" href="#" className="font-medium text-md group-hover:underline text-gray-100">Doloribus sit illo necessitatibus architecto exercitationem enim</a>
+                    <a rel="noopener noreferrer" href="#" className="font-medium text-md group-hover:underline text-gray-100">The spirit of competition inspires not just victories but a celebration of diversity, sportsmanship, and the shared love for the game</a>
                 </h2>
             </div>
         </div>
