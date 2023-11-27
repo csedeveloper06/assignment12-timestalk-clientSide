@@ -2,11 +2,13 @@ import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Lottie from "lottie-react";
 import working from '../../../public/working.json'
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import { Helmet } from "react-helmet";
 
 
 
@@ -56,14 +58,13 @@ const Register = () => {
 
     return (
         <>
-            {/* <Helmet>
+            <Helmet>
                 <title>Times Talk | Register</title>
-            </Helmet> */}
+            </Helmet>
             <div className="hero min-h-screen bg-base-200 py-16">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Register now!</h1>
-                        {/* <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p> */}
+                        <h1 className="text-5xl font-bold pb-2 text-center">Register now!</h1>
                         <div>
                             <Lottie animationData={working} />
                         </div>
@@ -101,19 +102,17 @@ const Register = () => {
                                     maxLength: 20,
                                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
                                 })} placeholder="password" className="input input-bordered" />
+
                                 {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
                                 {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
-                                {/* {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 characters</p>} */}
                                 {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase one lower case, one number and one special character.</p>}
-                                {/* <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label> */}
                             </div>
                             <div className="form-control mt-6">
                                 <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
                         </form>
                         <p className="p-4">Already have an account ? <small className="text-blue-600 font-bold"> <Link to="/login">Login</Link></small></p>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

@@ -43,7 +43,7 @@ const Login = () => {
         <div className="hero min-h-screen bg-base-200 py-16">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold my-4">Login now!</h1>
+                    <h1 className="text-5xl font-bold my-4 text-center">Login now!</h1>
                     <div>
                         <Lottie animationData={working} />
                     </div>
@@ -61,9 +61,6 @@ const Login = () => {
                             <span className="label-text">Password</span>
                         </label>
                         <input type="password" name='password' placeholder="password" className="input input-bordered" required />
-                        {/* <label className="label">
-                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                        </label> */}
                     </div>
                     <div className="form-control mt-6">
                         <input className='btn btn-primary' type="submit" value="Login" />

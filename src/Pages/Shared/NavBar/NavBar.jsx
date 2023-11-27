@@ -1,27 +1,66 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+// import useAdmin from "../../../hooks/useAdmin";
 
 const NavBar = () => {
+
+  const { user, logOut } = useContext(AuthContext);
+  // const [isAdmin] = useAdmin();
+
+  const handleLogOut = () => {
+    logOut()
+        .then(() => { })
+        .catch(error => console.log(error));
+}
+
   const navLinks = (
     <>
       <li>
         <a>Home</a>
       </li>
-      <li tabIndex={0}>
-        <details>
-          <summary>Parent</summary>
-          <ul className="p-2">
-            <li>
-              <a>Submenu 1</a>
-            </li>
-            <li>
-              <a>Submenu 2</a>
-            </li>
-          </ul>
-        </details>
+      <li>
+        <a>All Articles</a>
       </li>
       <li>
-        <a>Item 3</a>
+        <a>Add Articles</a>
       </li>
+      <li>
+        <a>Subscription</a>
+      </li>
+      <li>
+        <a>My Articles</a>
+      </li>
+      <li>
+        <a>Premium Articles</a>
+      </li>
+
+      {/* {
+            user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
+      }
+
+      {
+            user && !isAdmin && <li><Link to="/dashboard/userHome">Dashboard</Link></li>
+      } */}
+
+      {/* <li>
+            <Link to="/dashboard/cart">
+                <button className="btn">
+                    <FaShoppingCart className="mr-2"></FaShoppingCart>
+                    <div className="badge badge-secondary">+{cart.length}</div>
+                </button>
+            </Link>
+      </li> */}
+
+      {
+            user ? <>
+                {/* <span>{user?.displayName}</span> */}
+                <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
+            </> : <>
+                <li><Link to="/login">Login</Link></li>
+            </>
+     }
+
     </>
   );
 
