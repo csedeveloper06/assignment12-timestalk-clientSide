@@ -1,16 +1,18 @@
 import { useContext } from "react";
-// import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { AuthContext } from "../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Lottie from "lottie-react";
+import working from '../../../public/working.json'
 
 
 
 const Register = () => {
 
-    // const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -23,32 +25,48 @@ const Register = () => {
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('user profile info updated')
-                        reset();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'User created successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        navigate('/');
+                            // create user entry in the database
+                            const userInfo = {
+                                name: data.name,
+                                email: data.email
+                            }
+                            axiosPublic.post('/users', userInfo)
+                                .then(res => {
+                                    if (res.data.insertedId) {
+                                        console.log('user added to the database')
+                                        reset();
+                                        Swal.fire({
+                                            position: 'top-end',
+                                            icon: 'success',
+                                            title: 'User created successfully.',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                        navigate('/');
+                                    }
 
                     })
-                    .catch(error => console.log(error))
+
+              })
+            
+              .catch(error => console.log(error))
+
             })
-    }
+    };
 
     return (
         <>
-             <Helmet>
+            {/* <Helmet>
                 <title>Times Talk | Register</title>
-            </Helmet>
-            <div className="hero min-h-screen bg-base-200">
+            </Helmet> */}
+            <div className="hero min-h-screen bg-base-200 py-16">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold">Register now!</h1>
                         {/* <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p> */}
+                        <div>
+                            <Lottie animationData={working} />
+                        </div>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -95,7 +113,7 @@ const Register = () => {
                                 <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
                         </form>
-                        <p><small>Already have an account <Link to="/login">Login</Link></small></p>
+                        <p className="p-4">Already have an account ? <small className="text-blue-600 font-bold"> <Link to="/login">Login</Link></small></p>
                     </div>
                 </div>
             </div>
