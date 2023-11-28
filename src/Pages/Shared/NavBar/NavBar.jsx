@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 // import useAdmin from "../../../hooks/useAdmin";
 
@@ -16,23 +16,23 @@ const NavBar = () => {
 
   const navLinks = (
     <>
-      <li>
-        <a>Home</a>
+        <li>
+          <NavLink to="/">Home</NavLink>
+        </li>
+      <li> 
+        <NavLink to='/allarticles'>All Articles</NavLink>
       </li>
       <li>
-        <a>All Articles</a>
+        <NavLink to='/addarticles'>Add Articles</NavLink>
+       </li>
+      <li>
+        <NavLink to='/subscription'>Subscription</NavLink>
       </li>
       <li>
-        <a>Add Articles</a>
+        <NavLink to='/myarticles'>My Articles</NavLink>
       </li>
       <li>
-        <a>Subscription</a>
-      </li>
-      <li>
-        <a>My Articles</a>
-      </li>
-      <li>
-        <a>Premium Articles</a>
+        <NavLink to='/premiumarticles'>Premium Articles</NavLink>
       </li>
 
       {/* {
@@ -54,10 +54,12 @@ const NavBar = () => {
 
       {
             user ? <>
-                {/* <span>{user?.displayName}</span> */}
-                <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
-            </> : <>
+                <button onClick={handleLogOut} className="btn btn-secondary">LogOut</button>
+                <span className="text-xs ml-5">{user?.displayName}</span>
+            </> :
+            <>
                 <li><Link to="/login">Login</Link></li>
+                
             </>
      }
 
@@ -94,7 +96,7 @@ const NavBar = () => {
           </div>
         <div className="avatar">
                 <div className="w-10 rounded-full">
-                    <img src="https://i.ibb.co/hK57GmH/globe-logo.jpg" />
+                  <img src="https://i.ibb.co/hK57GmH/globe-logo.jpg" />   
                 </div>
                 <a className="btn btn-ghost text-xl">TimesTalk</a>
         </div>
@@ -104,11 +106,24 @@ const NavBar = () => {
             {navLinks}
           </ul>
         </div>
-        <div className="navbar-end">
-          <Link to='/login'>
-              <button className="btn btn-secondary">Login</button>
-          </Link>
-          
+        <div className="navbar-end avatar">
+          <div className="w-24 rounded-full">
+            {
+                 user? 
+                 <>
+                  <Link to='/myprofile'>
+                      <img className="w-16 h-16 rounded-full" src={user.photoURL} alt="" />
+                  </Link>
+                 </> 
+                 :
+                 <>
+                    <Link to='/login'>
+                        <img src="https://i.ibb.co/x3RPF21/icon.png"/>
+                    </Link>
+                 </>
+            }
+            
+          </div>
         </div>
       </div>
     </>
