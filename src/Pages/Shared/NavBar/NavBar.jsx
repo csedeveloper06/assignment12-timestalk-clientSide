@@ -19,21 +19,21 @@ const NavBar = () => {
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
-      <li> 
-        <NavLink to='/allarticles'>All Articles</NavLink>
-      </li>
-      <li>
-        <NavLink to='/addarticles'>Add Articles</NavLink>
-       </li>
-      <li>
-        <NavLink to='/subscription'>Subscription</NavLink>
-      </li>
-      <li>
-        <NavLink to='/myarticles'>My Articles</NavLink>
-      </li>
-      <li>
-        <NavLink to='/premiumarticles'>Premium Articles</NavLink>
-      </li>
+        <li> 
+          <NavLink to='/dashboard/allarticles'>All Articles</NavLink>
+        </li>
+        <li>
+          <NavLink to='/addarticles'>Add Articles</NavLink>
+        </li>
+        <li>
+          <NavLink to='/subscription'>Subscription</NavLink>
+        </li>
+        <li>
+          <NavLink to='/myarticles'>My Articles</NavLink>
+        </li>
+        <li>
+          <NavLink to='/premiumarticles'>Premium Articles</NavLink>
+        </li>
 
       {/* {
             user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>

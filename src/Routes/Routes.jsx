@@ -13,6 +13,9 @@ import MyArticles from "../Pages/MyArticles/MyArticles";
 import PremiumArticles from "../Pages/PremiumArticles/PremiumArticles";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Dashboard from "../LayOut/Dashboard";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AllPublishers from "../Pages/Dashboard/AllPublishers/AllPublishers";
 
   export const router = createBrowserRouter([
     {
@@ -32,10 +35,10 @@ import ErrorPage from "../ErrorPage/ErrorPage";
           path: '/login',
           element: <Login></Login>
         },
-        {
-            path: '/allarticles',
-            element: <AllArticles></AllArticles>
-        },
+        // {
+        //     path: '/dashboard/allarticles',
+        //     element: <AllArticles></AllArticles>
+        // },
         {
             path: '/addarticles',
             element: <AddArticles></AddArticles>
@@ -58,4 +61,23 @@ import ErrorPage from "../ErrorPage/ErrorPage";
         },
       ]
     },
+    {
+      path: '/dashboard',
+      element: <Dashboard></Dashboard>,
+      children: [
+        {
+          path: '/dashboard/allusers',
+          element: <AllUsers></AllUsers>
+        },
+        {
+          path: '/dashboard/allarticles',
+          element: <AllArticles></AllArticles>
+        },
+        {
+          path: '/dashboard/allpublishers',
+          element: <AllPublishers></AllPublishers>
+        },
+      ]
+      
+    }
   ]);

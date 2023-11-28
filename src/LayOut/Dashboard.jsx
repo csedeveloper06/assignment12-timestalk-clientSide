@@ -1,0 +1,38 @@
+import { NavLink, Outlet } from "react-router-dom";
+import { PiUsersFill,PiArticleFill } from "react-icons/pi";
+import { SiAffinitypublisher } from "react-icons/si";
+
+
+const Dashboard = () => {
+    return (
+        <div className="flex">
+            <div className="w-64 min-h-screen bg-amber-500">
+                <ul className="menu py-20">
+                   <li>
+                        <NavLink to='/dashboard/allusers'>
+                            <PiUsersFill className="text-2xl"></PiUsersFill>
+                                All Users
+                        </NavLink>
+                   </li>
+                   <li>
+                    <NavLink to='/dashboard/allarticles'>
+                        <PiArticleFill className=" text-2xl"></PiArticleFill>
+                        All Articles
+                    </NavLink>
+                   </li>
+                   <li>
+                    <NavLink to='/dashboard/allpublishers'>
+                        <SiAffinitypublisher className="text-2xl"/>
+                        All Publishers
+                    </NavLink>
+                   </li>
+                </ul>
+            </div>
+            <div className="flex-1">
+                <Outlet></Outlet>
+            </div>
+        </div>
+    );
+};
+
+export default Dashboard;
