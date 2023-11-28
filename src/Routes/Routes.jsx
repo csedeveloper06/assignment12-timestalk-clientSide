@@ -12,10 +12,12 @@ import SubsCription from "../Pages/SubsCription/SubsCription";
 import MyArticles from "../Pages/MyArticles/MyArticles";
 import PremiumArticles from "../Pages/PremiumArticles/PremiumArticles";
 import MyProfile from "../Pages/MyProfile/MyProfile";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
   export const router = createBrowserRouter([
     {
       path: "/",
+      errorElement: <ErrorPage></ErrorPage>,
       element:<Main></Main>,
       children: [
         {
