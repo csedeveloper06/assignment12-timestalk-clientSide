@@ -4,7 +4,9 @@ import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
+
   const axiosSecure = useAxiosSecure();
+
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -68,6 +70,7 @@ const AllUsers = () => {
             <tr>
               <th></th>
               <th>Name</th>
+              <th>Image</th>
               <th>Email</th>
               <th>Role</th>
               <th>Action</th>
@@ -78,6 +81,7 @@ const AllUsers = () => {
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
+                <td><img className="w-24 h-24 rounded-full" src={user.photo} alt="" /></td>
                 <td>{user.email}</td>
                 <td>
                   { user.role === "admin" ? "Admin"  : 

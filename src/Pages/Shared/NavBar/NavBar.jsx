@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import useAdmin from "../../../hooks/useAdmin";
 // import useAdmin from "../../../hooks/useAdmin";
 
 const NavBar = () => {
 
   const { user, logOut } = useContext(AuthContext);
-  // const [isAdmin] = useAdmin();
+  const [isAdmin] = useAdmin();
 
   const handleLogOut = () => {
     logOut()
@@ -34,9 +35,14 @@ const NavBar = () => {
         <li>
           <NavLink to='/premiumarticles'>Premium Articles</NavLink>
         </li>
-        <li>
-          <NavLink to='/dashboard' className='mr-2'>Dashboard</NavLink>
-        </li>
+        {
+          isAdmin ? <>
+            <li>
+              <NavLink to='/dashboard' className='mr-2'>Dashboard</NavLink>
+            </li>
+          </> : ' '
+        }
+       
 {/* 
       {
             user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>

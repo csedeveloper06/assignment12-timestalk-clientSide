@@ -1,9 +1,14 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { PiUsersFill,PiArticleFill } from "react-icons/pi";
 import { SiAffinitypublisher } from "react-icons/si";
+// import useAdmin from "../hooks/useAdmin";
 
 
 const Dashboard = () => {
+
+       // TODO: get isAdmin value from the database
+    //    const [isAdmin] = useAdmin();
+
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-amber-500">
@@ -28,6 +33,7 @@ const Dashboard = () => {
                    </li>
                 </ul>
             </div>
+            <div className="divider"></div>
             <div className="flex-1">
                 <Outlet></Outlet>
             </div>
