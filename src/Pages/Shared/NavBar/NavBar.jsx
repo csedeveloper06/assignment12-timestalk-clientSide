@@ -20,7 +20,7 @@ const NavBar = () => {
           <NavLink to="/">Home</NavLink>
         </li>
         <li> 
-          <NavLink to='/dashboard/allarticles'>All Articles</NavLink>
+          <NavLink to='/allarticles'>All Articles</NavLink>
         </li>
         <li>
           <NavLink to='/addarticles'>Add Articles</NavLink>
@@ -34,14 +34,17 @@ const NavBar = () => {
         <li>
           <NavLink to='/premiumarticles'>Premium Articles</NavLink>
         </li>
+        <li>
+          <NavLink to='/dashboard' className='mr-2'>Dashboard</NavLink>
+        </li>
+{/* 
+      {
+            user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
+      } */}
 
       {/* {
-            user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
-      }
-
-      {
             user && !isAdmin && <li><Link to="/dashboard/userHome">Dashboard</Link></li>
-      } */}
+      }  */}
 
       {/* <li>
             <Link to="/dashboard/cart">
@@ -55,10 +58,9 @@ const NavBar = () => {
       {
             user ? <>
                 <button onClick={handleLogOut} className="btn btn-secondary">LogOut</button>
-                <span className="text-xs ml-5">{user?.displayName}</span>
             </> :
             <>
-                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/login" className="btn btn-secondary">Login</Link></li>
                 
             </>
      }
@@ -87,10 +89,7 @@ const NavBar = () => {
                 />
               </svg>
             </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               {navLinks}
             </ul>
           </div>
@@ -112,7 +111,7 @@ const NavBar = () => {
                  user? 
                  <>
                   <Link to='/myprofile'>
-                      <img className="w-16 h-16 rounded-full" src={user.photoURL} alt="" />
+                      <img className="w-10 h-10 rounded-full" src={user.photoURL} alt="" />
                   </Link>
                  </> 
                  :

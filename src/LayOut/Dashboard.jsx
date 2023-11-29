@@ -7,7 +7,7 @@ const Dashboard = () => {
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-amber-500">
-                <ul className="menu py-20">
+                <ul className="menu mt-56">
                    <li>
                         <NavLink to='/dashboard/allusers'>
                             <PiUsersFill className="text-2xl"></PiUsersFill>

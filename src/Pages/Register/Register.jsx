@@ -2,13 +2,13 @@ import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-// import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Lottie from "lottie-react";
 import working from '../../../public/working.json'
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
-import { Helmet } from "react-helmet";
+
 
 
 
@@ -20,11 +20,11 @@ const Register = () => {
     const navigate = useNavigate();
 
     const onSubmit = data =>{
-        console.log(data);
+
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
+                console.log(loggedUser)
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                             // create user entry in the database
@@ -47,9 +47,9 @@ const Register = () => {
                                         navigate('/');
                                     }
 
-                    })
+                                })
 
-              })
+                     })
             
               .catch(error => console.log(error))
 
@@ -99,7 +99,6 @@ const Register = () => {
                                 <input type="password"  {...register("password", {
                                     required: true,
                                     minLength: 6,
-                                    maxLength: 20,
                                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
                                 })} placeholder="password" className="input input-bordered" />
 

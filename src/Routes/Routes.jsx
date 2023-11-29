@@ -35,10 +35,14 @@ import AllPublishers from "../Pages/Dashboard/AllPublishers/AllPublishers";
           path: '/login',
           element: <Login></Login>
         },
-        // {
-        //     path: '/dashboard/allarticles',
-        //     element: <AllArticles></AllArticles>
-        // },
+        {
+            path: '/allarticles',
+            element: <AllArticles></AllArticles>
+        },
+        {
+            path: '/dashboard',
+            element: <Dashboard></Dashboard>
+        },
         {
             path: '/addarticles',
             element: <AddArticles></AddArticles>
