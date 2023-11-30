@@ -5,6 +5,7 @@ import { AuthContext } from '../providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import SocialLogin from '../../Components/SocialLogin/SocialLogin';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
 
@@ -41,6 +42,9 @@ const Login = () => {
 
     return (
         <div className="hero min-h-screen bg-base-200 py-16">
+             <Helmet>
+                <title>Times Talk | Login</title>
+            </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold my-4 text-center">Login now!</h1>

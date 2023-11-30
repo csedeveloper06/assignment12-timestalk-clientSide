@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-import useAdmin from "../../../hooks/useAdmin";
-// import useAdmin from "../../../hooks/useAdmin";
+import { BsCartFill } from "react-icons/bs";
+
 
 const NavBar = () => {
 
   const { user, logOut } = useContext(AuthContext);
-  const [isAdmin] = useAdmin();
+  // const [isAdmin] = useAdmin();
+   
 
   const handleLogOut = () => {
     logOut()
@@ -30,45 +31,36 @@ const NavBar = () => {
           <NavLink to='/subscription'>Subscription</NavLink>
         </li>
         <li>
-          <NavLink to='/myarticles'>My Articles</NavLink>
+          <Link to='/'>
+            <button className="btn">
+                <BsCartFill className="text-2xl"></BsCartFill>
+              <div className="badge badge-secondary">+0</div>
+            </button>
+          </Link>
         </li>
         <li>
           <NavLink to='/premiumarticles'>Premium Articles</NavLink>
         </li>
-        {
-          isAdmin ? <>
-            <li>
-              <NavLink to='/dashboard' className='mr-2'>Dashboard</NavLink>
-            </li>
-          </> : ' '
-        }
-       
-{/* 
-      {
-            user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
-      } */}
 
-      {/* {
-            user && !isAdmin && <li><Link to="/dashboard/userHome">Dashboard</Link></li>
-      }  */}
-
-      {/* <li>
-            <Link to="/dashboard/cart">
-                <button className="btn">
-                    <FaShoppingCart className="mr-2"></FaShoppingCart>
-                    <div className="badge badge-secondary">+{cart.length}</div>
-                </button>
-            </Link>
-      </li> */}
+        {/* <li>
+              <NavLink to='/dashboard' className='mr-[4px]'>Dashboard</NavLink>
+        </li> */}
 
       {
             user ? <>
-                <button onClick={handleLogOut} className="btn btn-secondary">LogOut</button>
+                <button onClick={handleLogOut} className="btn btn-secondary btn-sm">LogOut</button>
             </> :
             <>
-                <li><Link to="/login" className="btn btn-secondary">Login</Link></li>
+                <li><Link to="/login" className="btn btn-secondary btn-sm">Login</Link></li>
                 
             </>
+     }
+
+     {
+        user ? ' ' : 
+        <>
+          <li><NavLink to='/register' className='btn btn-sm ml-1'>Register</NavLink></li>
+        </>
      }
 
     </>
@@ -112,12 +104,12 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="navbar-end avatar">
-          <div className="w-24 rounded-full">
+          <div className="w-16 rounded-full">
             {
                  user? 
                  <>
                   <Link to='/myprofile'>
-                      <img className="w-10 h-10 rounded-full" src={user.photoURL} alt="" />
+                      <img className="w-8 h-8 rounded-full" src={user.photoURL} alt="" />
                   </Link>
                  </> 
                  :
