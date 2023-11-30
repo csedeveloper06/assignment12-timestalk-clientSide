@@ -32,7 +32,8 @@ const NavBar = () => {
         </li>
         <li>
           <Link to='/'>
-            <button className="btn">
+            <button className="btn btn-sm">
+                My Articles
                 <BsCartFill className="text-2xl"></BsCartFill>
               <div className="badge badge-secondary">+0</div>
             </button>

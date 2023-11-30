@@ -13,9 +13,8 @@ import MyArticles from "../Pages/MyArticles/MyArticles";
 import PremiumArticles from "../Pages/PremiumArticles/PremiumArticles";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import ErrorPage from "../ErrorPage/ErrorPage";
-// import Dashboard from "../LayOut/Dashboard";
-// import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
-// import AllPublishers from "../Pages/Dashboard/AllPublishers/AllPublishers";
+import CardDetails from "../Components/ArticalCardDetails/CardDetails";
+
 
   export const router = createBrowserRouter([
     {
@@ -39,10 +38,11 @@ import ErrorPage from "../ErrorPage/ErrorPage";
             path: '/allarticles',
             element: <AllArticles></AllArticles>
         },
-        // {
-        //     path: '/dashboard',
-        //     element: <Dashboard></Dashboard>
-        // },
+        {
+            path: '/carddetails/:_id',
+            element: <CardDetails></CardDetails>,
+            loader: ()=> fetch('http://localhost:5000/articles')
+        },
         {
             path: '/addarticles',
             element: <AddArticles></AddArticles>
@@ -64,24 +64,5 @@ import ErrorPage from "../ErrorPage/ErrorPage";
             element: <MyProfile></MyProfile>
         },
       ]
-    },
-    // {
-    //   path: '/dashboard',
-    //   element: <Dashboard></Dashboard>,
-    //   children: [
-    //     {
-    //       path: '/dashboard/allusers',
-    //       element: <AllUsers></AllUsers>
-    //     },
-    //     {
-    //       path: '/dashboard/allarticles',
-    //       element: <AllArticles></AllArticles>
-    //     },
-    //     {
-    //       path: '/dashboard/allpublishers',
-    //       element: <AllPublishers></AllPublishers>
-    //     },
-    //   ]
-      
-    // }
+    }
   ]);
