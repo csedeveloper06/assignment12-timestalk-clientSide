@@ -14,6 +14,8 @@ import PremiumArticles from "../Pages/PremiumArticles/PremiumArticles";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import CardDetails from "../Components/ArticalCardDetails/CardDetails";
+import Dashboard from "../LayOut/Dashboard";
+import AdminAllArticles from "../Pages/Dashboard/AdminAllArticles/AdminAllArticles";
 
 
   export const router = createBrowserRouter([
@@ -63,6 +65,24 @@ import CardDetails from "../Components/ArticalCardDetails/CardDetails";
             path: '/myprofile',
             element: <MyProfile></MyProfile>
         },
+        {
+          path: 'dashboard',
+          element: <Dashboard></Dashboard>,
+          children: [
+            {
+              path: '/dashboard/adminallarticles',
+              element: <AdminAllArticles></AdminAllArticles>
+            },
+            {
+              path: '/dashboard/allusers',
+              element: <AdminAllArticles></AdminAllArticles>
+            },
+            {
+              path: '/dashboard/allpublishers',
+              element: <AdminAllArticles></AdminAllArticles>
+            }
+          ]
+        }
       ]
     }
   ]);

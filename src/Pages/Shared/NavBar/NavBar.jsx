@@ -2,11 +2,13 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { BsCartFill } from "react-icons/bs";
+import useCart from "../../../hooks/useCart";
 
 
 const NavBar = () => {
 
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart();
   // const [isAdmin] = useAdmin();
    
 
@@ -31,11 +33,11 @@ const NavBar = () => {
           <NavLink to='/subscription'>Subscription</NavLink>
         </li>
         <li>
-          <Link to='/'>
+          <Link to='/myarticles'>
             <button className="btn btn-sm">
                 My Articles
                 <BsCartFill className="text-2xl"></BsCartFill>
-              <div className="badge badge-secondary">+0</div>
+              <div className="badge badge-secondary">+{cart.length}</div>
             </button>
           </Link>
         </li>
@@ -43,9 +45,9 @@ const NavBar = () => {
           <NavLink to='/premiumarticles'>Premium Articles</NavLink>
         </li>
 
-        {/* <li>
-              <NavLink to='/dashboard' className='mr-[4px]'>Dashboard</NavLink>
-        </li> */}
+        <li>
+              <NavLink to='/dashboard' className='text-xs'>Dashboard</NavLink>
+        </li>
 
       {
             user ? <>
