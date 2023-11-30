@@ -1,25 +1,27 @@
-import { useEffect, useState } from "react";
+
 import { Helmet } from "react-helmet";
+import useAuth from "../../hooks/useAuth";
 
 
 const MyProfile = () => {
-    const [cards, setCards] = useState([]);
+    
+    const { user } = useAuth();
 
-    useEffect(() => {
-        fetch('http://localhost:5000/articles')
-            .then(res => res.json())
-            .then(data => {
-                setCards(data);
-            });
-    }, [])
-
-    console.log(cards);
     return (
         <div>
              <Helmet>
                 <title>Times Talk | My Profile</title>
             </Helmet>
-            <h2 className="text-3xl">This is My Profile</h2>
+            <div className="card w-96 bg-base-100 shadow-xl py-20">
+                <div className="card-body">
+                    <img src={user.photoURL} alt="" />
+                    <h2 className="card-title">{user.displayName}</h2>
+                    <p>{user.email}</p>
+                    <div className="card-actions justify-end">
+                         
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

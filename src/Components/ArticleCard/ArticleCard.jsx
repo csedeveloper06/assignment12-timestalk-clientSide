@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 
@@ -7,6 +8,9 @@ const ArticleCard = ({card}) => {
 
     return (
         <div className="card card-compact w-[300px] h-[500px] bg-base-100 shadow-xl my-16">
+            <Helmet>
+                <title>Times Talk | Card</title>
+            </Helmet>
             <figure><img src={image}  /></figure>
             <div className="card-body">
             <h2 className="card-title">{title}</h2>
