@@ -16,6 +16,9 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import CardDetails from "../Components/ArticalCardDetails/CardDetails";
 import Dashboard from "../LayOut/Dashboard";
 import AdminAllArticles from "../Pages/Dashboard/AdminAllArticles/AdminAllArticles";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AllPublishers from "../Pages/Dashboard/AllPublishers/AllPublishers";
 
 
   export const router = createBrowserRouter([
@@ -55,7 +58,7 @@ import AdminAllArticles from "../Pages/Dashboard/AdminAllArticles/AdminAllArticl
         },
         {
             path: '/myarticles',
-            element: <MyArticles></MyArticles>
+            element: <PrivateRoute><MyArticles></MyArticles></PrivateRoute>
         },
         {
             path: '/premiumarticles',
@@ -67,7 +70,7 @@ import AdminAllArticles from "../Pages/Dashboard/AdminAllArticles/AdminAllArticl
         },
         {
           path: 'dashboard',
-          element: <Dashboard></Dashboard>,
+          element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
           children: [
             {
               path: '/dashboard/adminallarticles',
@@ -75,11 +78,11 @@ import AdminAllArticles from "../Pages/Dashboard/AdminAllArticles/AdminAllArticl
             },
             {
               path: '/dashboard/allusers',
-              element: <AdminAllArticles></AdminAllArticles>
+              element: <AllUsers></AllUsers>
             },
             {
               path: '/dashboard/allpublishers',
-              element: <AdminAllArticles></AdminAllArticles>
+              element: <AllPublishers></AllPublishers>
             }
           ]
         }

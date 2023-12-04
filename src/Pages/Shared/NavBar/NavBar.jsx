@@ -115,12 +115,7 @@ const NavBar = () => {
                       <img className="w-8 h-8 rounded-full" src={user.photoURL} alt="" />
                   </Link>
                  </> 
-                 :
-                 <>
-                    <Link to='/login'>
-                        <img src="https://i.ibb.co/x3RPF21/icon.png"/>
-                    </Link>
-                 </>
+                 : " "
             }
             
           </div>
