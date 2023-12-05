@@ -1,22 +1,15 @@
 import { Helmet } from "react-helmet";
-import { useForm } from "react-hook-form";
+import { Form, useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import Select from 'react-select';
+// import Select from 'react-select';
 
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-const options = [
-    { value: 'Health', label: 'Health' },
-    { value: 'Beauty', label: 'Beauty' },
-    { value: 'Sports', label: 'Sports' },
-    { value: 'Politics', label: 'Politics' },
-    { value: 'travel', label: 'travel' },
-  ]
 
 
 const AddArticles = () => {
@@ -25,10 +18,17 @@ const AddArticles = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
 
-    const onSubmit = async(data) =>{
+    // const options = [
+    //     { value: 'Health', label: 'Health' },
+    //     { value: 'Beauty', label: 'Beauty' },
+    //     { value: 'Sports', label: 'Sports' },
+    //     { value: 'Politics', label: 'Politics' },
+    //     { value: 'travel', label: 'travel' },
+    //   ]
 
+    const onSubmit = async(data) =>{
         console.log(data);
-        // image upload to imgbb and then get an url
+        //image upload to imgbb and then get an url
         const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {
@@ -37,28 +37,32 @@ const AddArticles = () => {
         });
         if (res.data.success){
                    // now send the menu item data to the server with the image url
-                   const menuItem = {
-                    name: data.name,
-                    category: data.category,
-                    price: parseFloat(data.price),
-                    recipe: data.recipe,
-                    image: res.data.data.display_url
+                const articleItem = {
+                title: data.title,
+                image: res.data.data.display_url,
+                tag: data.tag,
+                description: data.description,
+                publisher: data.publisher,
+                type: data.type,
+                authorName: data.authorName,
+                authorEmail: data.authorEmail,
+                authorImage: res.data.data.display_url
                 }
-                const menuRes = await axiosSecure.post('/menu', menuItem);
-                console.log(menuRes.data)
-                if(menuRes.data.insertedId){
+                const articleRes = await axiosSecure.post('/articles', articleItem);
+                console.log(articleRes.data)
+                if(articleRes.data.insertedId){
                     // show success popup
-                    reset();
+                    // Form.reset();
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `${data.name} is added to the menu.`,
+                        title: `${data.title} is added to the articles.`,
                         showConfirmButton: false,
                         timer: 1500
                       });
                 }
-             }
-             console.log( 'with image url', res.data);
+         }
+            console.log( 'with image url', res.data);
     };
 
     return (
@@ -97,23 +101,23 @@ const AddArticles = () => {
                             <label className="label">
                                 <span className="label-text">Publisher*</span>
                             </label>
-                            <select defaultValue="default" {...register('Publisher', { required: true })}
+                            <select defaultValue="default" {...register('publisher', { required: true })}
                                 className="select select-bordered w-full">
-                                <option disabled value="default">Select a category</option>
-                                <option value=""></option>
-                                <option value="pizza"></option>
-                                <option value="soup"></option>
-                                <option value="dessert"></option>
-                                <option value="drinks"></option>
+                                <option disabled value="default">Select a Publisher</option>
+                                <option value="Health and Wellness Magazine">Health and Wellness Magazine</option>
+                                <option value="Beauty Publishers">Beauty Publishers</option>
+                                <option value="Sports Publishers">Sports Publishers</option>
+                                <option value="politics Publishers">politics Publishers</option>
+                                <option value="travel Publishers">travel Publishers</option>
                             </select>
                         </div>
                                 {/* tag */}
-                        <div className="form-control w-full my-6">
+                        {/* <div className="form-control w-full my-6">
                             <label className="label">
-                                <span className="label-text">Tag*</span>
+                                <span className="label-text">Tag</span>
                             </label>
-                             <Select options={options} />
-                        </div>
+                             <Select {...register('tag')} options={options} />
+                        </div> */}
 
                     </div>
 
@@ -148,7 +152,7 @@ const AddArticles = () => {
                             <input
                                 type="text"
                                 placeholder="Article Author Name"
-                                {...register('name', { required: true })}
+                                {...register('authorName', { required: true })}
                                 required
                                 className="input input-bordered w-full" />
                         </div>
@@ -159,7 +163,7 @@ const AddArticles = () => {
                             <input
                                 type="text"
                                 placeholder="Article Author Email"
-                                {...register('name', { required: true })}
+                                {...register('authorEmail', { required: true })}
                                 required
                                 className="input input-bordered w-full" />
                         </div>
@@ -168,13 +172,10 @@ const AddArticles = () => {
                             <label className="label">
                                 <span className="label-text">Article Auhor Image*</span>
                             </label>
-                             <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
+                             <input {...register('authorPhoto', { required: true })} type="file" className="file-input w-full max-w-xs" />
                         </div>
                     </div>
-
-        
-
-                    <input type="submit" className="btn btn-primary my-8 w-1/2 ml-60 text-2xl font-bold"/>
+                   <input type="submit" value='Submit' className="btn btn-primary my-8 w-1/2 ml-60 text-2xl font-bold"/>
                 </form>
             </div>
         </div>

@@ -60,7 +60,7 @@ const AllPublishers = () => {
                             <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
                         </div>
                         <input type="submit" className="font-bold btn btn-primary" />
-                    </form>
+                </form>
             </div>
         </div>
     );
