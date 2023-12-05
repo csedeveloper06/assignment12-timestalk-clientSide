@@ -1,8 +1,9 @@
 import { Helmet } from "react-helmet";
-import { Form, useForm } from "react-hook-form";
+import {  useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Form } from "react-router-dom";
 // import Select from 'react-select';
 
 
@@ -52,7 +53,6 @@ const AddArticles = () => {
                 console.log(articleRes.data)
                 if(articleRes.data.insertedId){
                     // show success popup
-                    // Form.reset();
                     Swal.fire({
                         position: "top-end",
                         icon: "success",

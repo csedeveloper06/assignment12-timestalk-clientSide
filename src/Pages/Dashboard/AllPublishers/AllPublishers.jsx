@@ -25,22 +25,19 @@ const AllPublishers = () => {
         });
         if (res.data.success) {
             // now send the menu item data to the server with the image url
-            const menuItem = {
-                name: data.name,
-                // category: data.category,
-                // price: parseFloat(data.price),
-                // recipe: data.recipe,
+            const publishersItem = {
+                publishersName: data.publishersName,
                 image: res.data.data.display_url
             }
-            const menuRes = await axiosSecure.post('/menu', menuItem);
-            console.log(menuRes.data)
-            if(menuRes.data.insertedId){
+            const publishersRes = await axiosSecure.post('/publishers', publishersItem);
+            console.log(publishersRes.data);
+            if(publishersRes.data.insertedId){
                  // show success popup
-                 reset();
+                //  reset();
                  Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: `${data.name} is added to the menu.`,
+                    title: `${data.publishersName} is added to the publishers.`,
                     showConfirmButton: false,
                     timer: 1500
                   });
@@ -54,8 +51,17 @@ const AllPublishers = () => {
             <h2 className="text-3xl my-16">Add Publisher Form</h2>
             <div>
                 <form onSubmit={handleSubmit(onSubmit)} className="my-20 bg-slate-200 p-5 rounded-2xl">
-                        <label className="font-bold text-xl text-blue-500">Publisher Name</label>
-                        <input {...register("publisherName")} className="ml-4" />
+                        <div className="form-control w-full my-6">
+                            <label className="font-bold text-xl text-blue-500 label">
+                                <span className="label-text">Publishers Name*</span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Publishers Name"
+                                {...register('publishersName', { required: true })}
+                                required
+                                className="input input-bordered w-full" />
+                        </div>
                         <div className="form-control w-full my-6">
                             <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
                         </div>
