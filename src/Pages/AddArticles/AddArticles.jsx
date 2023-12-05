@@ -3,14 +3,10 @@ import {  useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { Form } from "react-router-dom";
-// import Select from 'react-select';
-
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
-
 
 
 const AddArticles = () => {
@@ -18,14 +14,6 @@ const AddArticles = () => {
     const { register, handleSubmit } = useForm();
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
-
-    // const options = [
-    //     { value: 'Health', label: 'Health' },
-    //     { value: 'Beauty', label: 'Beauty' },
-    //     { value: 'Sports', label: 'Sports' },
-    //     { value: 'Politics', label: 'Politics' },
-    //     { value: 'travel', label: 'travel' },
-    //   ]
 
     const onSubmit = async(data) =>{
         console.log(data);
@@ -112,12 +100,21 @@ const AddArticles = () => {
                             </select>
                         </div>
                                 {/* tag */}
-                        {/* <div className="form-control w-full my-6">
+                        <div className="form-control w-full my-6">
                             <label className="label">
-                                <span className="label-text">Tag</span>
+                                <span className="label-text">Tag*</span>
                             </label>
-                             <Select {...register('tag')} options={options} />
-                        </div> */}
+                             {/* <Select {...register('tag' , { required: true })} options={options}/> */}
+                             <select defaultValue="default" {...register('tag', { required: true })}
+                                className="select select-bordered w-full">
+                                <option disabled value="default">Select a Tag</option>
+                                <option value="Health">Health</option>
+                                <option value="Beauty">Beauty</option>
+                                <option value="Sports">Sports</option>
+                                <option value="politics">Politics</option>
+                                <option value="travel">travel</option>
+                            </select>
+                        </div>
 
                     </div>
 
