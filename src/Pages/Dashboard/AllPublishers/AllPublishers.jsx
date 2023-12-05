@@ -51,7 +51,7 @@ const AllPublishers = () => {
 
     return (
         <div>
-            <h2 className="text-3xl my-16">Add Publisher Foorm</h2>
+            <h2 className="text-3xl my-16">Add Publisher Form</h2>
             <div>
                 <form onSubmit={handleSubmit(onSubmit)} className="my-20 bg-slate-200 p-5 rounded-2xl">
                         <label className="font-bold text-xl text-blue-500">Publisher Name</label>
