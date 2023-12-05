@@ -5,6 +5,7 @@ import { BsCartFill } from "react-icons/bs";
 import useCart from "../../../hooks/useCart";
 
 
+
 const NavBar = () => {
 
   const { user, logOut } = useContext(AuthContext);

@@ -19,6 +19,7 @@ import AdminAllArticles from "../Pages/Dashboard/AdminAllArticles/AdminAllArticl
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AllPublishers from "../Pages/Dashboard/AllPublishers/AllPublishers";
+import AdminRoute from "./AdminRoute";
 
 
   export const router = createBrowserRouter([
@@ -74,15 +75,15 @@ import AllPublishers from "../Pages/Dashboard/AllPublishers/AllPublishers";
           children: [
             {
               path: '/dashboard/adminallarticles',
-              element: <AdminAllArticles></AdminAllArticles>
+              element: <AdminRoute><AdminAllArticles></AdminAllArticles></AdminRoute>
             },
             {
               path: '/dashboard/allusers',
-              element: <AllUsers></AllUsers>
+              element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
               path: '/dashboard/allpublishers',
-              element: <AllPublishers></AllPublishers>
+              element: <AdminRoute><AllPublishers></AllPublishers></AdminRoute>
             }
           ]
         }
