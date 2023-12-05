@@ -77,7 +77,7 @@ const AddArticles = () => {
                             <input
                                 type="text"
                                 placeholder="Article Name"
-                                {...register('name', { required: true })}
+                                {...register('title', { required: true })}
                                 required
                                 className="input input-bordered w-full" />
                         </div>
@@ -121,9 +121,14 @@ const AddArticles = () => {
                              {/* Image */}
                         <div className="form-control w-full my-6">
                             <label className="label">
-                                <span className="label-text">Image*</span>
+                                <span className="label-text">Type*</span>
                             </label>
-                             <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
+                             <input
+                                type="text"
+                                placeholder="Article Type"
+                                {...register('type', { required: true })}
+                                required
+                                className="input input-bordered w-full" />
                         </div>
 
                              {/* Article descriptions */}
@@ -161,7 +166,7 @@ const AddArticles = () => {
                                  {/* Image */}
                         <div className="form-control w-full my-6">
                             <label className="label">
-                                <span className="label-text">Aticle Auhor Image*</span>
+                                <span className="label-text">Article Auhor Image*</span>
                             </label>
                              <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
                         </div>
