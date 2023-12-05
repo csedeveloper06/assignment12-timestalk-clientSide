@@ -8,7 +8,7 @@ const AllArticles = () => {
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/articles')
+        fetch('https://assignment12-auth.web.app/articles')
             .then(res => res.json())
             .then(data => {
                 setCards(data);

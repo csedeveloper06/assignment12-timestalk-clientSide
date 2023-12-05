@@ -47,7 +47,7 @@ import AdminRoute from "./AdminRoute";
         {
             path: '/carddetails/:_id',
             element: <CardDetails></CardDetails>,
-            loader: ()=> fetch('http://localhost:5000/articles')
+            loader: ()=> fetch('https://assignment12-auth.web.app/articles')
         },
         {
             path: '/addarticles',
