@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const axiosPublic = axios.create({
-    baseURL: 'https://assignment12-auth.web.app'
+    baseURL: 'https://assignment12-timestalk-server.vercel.app'
 })
 
 const useAxiosPublic = () => {

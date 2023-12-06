@@ -21,7 +21,7 @@ const Testimonial = () => {
 
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('https://assignment12-auth.web.app/review')
+        fetch('https://assignment12-timestalk-server.vercel.app/review')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])

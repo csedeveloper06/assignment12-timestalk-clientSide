@@ -47,7 +47,7 @@ import AdminRoute from "./AdminRoute";
         {
             path: '/carddetails/:_id',
             element: <CardDetails></CardDetails>,
-            loader: ()=> fetch('https://assignment12-auth.web.app/articles')
+            loader: ()=> fetch('https://assignment12-timestalk-server.vercel.app/articles')
         },
         {
             path: '/addarticles',
@@ -63,7 +63,7 @@ import AdminRoute from "./AdminRoute";
         },
         {
             path: '/premiumarticles',
-            element: <PremiumArticles></PremiumArticles>
+            element: <PrivateRoute><PremiumArticles></PremiumArticles></PrivateRoute>
         },
         {
             path: '/myprofile',

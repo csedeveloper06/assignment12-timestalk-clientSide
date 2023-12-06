@@ -1,13 +1,30 @@
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useCart from "../../hooks/useCart";
-import { FaTrashAlt } from "react-icons/fa";
+import { Helmet } from "react-helmet";
+import { AuthContext } from "../providers/AuthProvider";
+import { useContext, useEffect, useState } from "react";
+import ArticleTable from "./ArticleTable";
 
 
 const MyArticles = () => {
 
-    const [cart, refetch] = useCart();
-    const axiosSecure = useAxiosSecure();
+    const { user } = useContext(AuthContext);
+    const [manageArticles, setManageArticles] = useState([]);
+    // const [ refetch] = useCart();
+
+    const url = `https://assignment12-timestalk-server.vercel.app/manageArticles?email=${user?.email}`;
+
+    useEffect(() => {
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setManageArticles(data);
+            });
+        }, [url]);
+
+        console.log(manageArticles);
+
+    // const axiosSecure = useAxiosSecure();
 
     const handleDelete = id =>{
         console.log(id)
@@ -22,26 +39,36 @@ const MyArticles = () => {
         }).then((result) => {
                 if (result.isConfirmed) {
     
-                    axiosSecure.delete(`/carts/${id}`)
-                        .then(res => {
-                            if (res.data.deletedCount > 0) {
-                                refetch();
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success"
-                                });
-                            }
-                        })
-                }
-            });
-        }
+                    //axiosSecure.delete(`/manageArticles/${id}`)
+                    fetch(`https://https://assignment12-timestalk-server.vercel.app/manageArticles/${id}`, {
+                        method: "DELETE"
+                      })
+                      .then((res) => res.json())
+                      .then((data) => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                          Swal.fire(
+                              'Deleted!',
+                              'Your product has been deleted.',
+                              'success'
+                          )
+                          const remaining = manageArticles.filter(manageArticle => manageArticle._id !== id);
+                          setManageArticles(remaining);
+                        }
+                      });
+                  }
+               }); 
+              }
+                
            
 
     return (
         <div>
             <div className="flex justify-evenly mb-8">
-                <h2 className="text-4xl">Items: {cart.length}</h2>
+                <Helmet>
+                    <title>Times Talk | My Articles</title>
+                </Helmet>
+                <h1 className="text-3xl text-center text-orange-500 font-bold my-8">My Manage Services:{manageArticles.length}</h1>
             </div>
             <div className="overflow-x-auto">
                 <table className="table  w-full">
@@ -57,32 +84,17 @@ const MyArticles = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            cart.map((item, index) => <tr key={item._id}>
-                                <th>
-                                    {index + 1}
-                                </th>
-                                <td>
-                                    <div className="flex items-center gap-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src={item.image} alt="Avatar Tailwind CSS Component" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    {item.title}
-                                </td>
-                                <th>
-                                    <button
-                                        onClick={() => handleDelete(item._id)}
-                                        className="btn btn-ghost btn-lg">
-                                        <FaTrashAlt className="text-red-600"></FaTrashAlt>
-                                    </button>
-                                </th>
-                            </tr>)
-                       }
+                        <>
+
+                            {
+                                manageArticles.map(manageArticle => <ArticleTable
+                                    key={manageArticle._id}
+                                    manageArticle={manageArticle}
+                                    handleDelete={handleDelete}
+                                ></ArticleTable>)
+                            }
+                            
+                        </>
                     </tbody>
                 </table>
             </div>

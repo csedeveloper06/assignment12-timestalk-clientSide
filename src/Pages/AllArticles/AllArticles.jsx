@@ -8,7 +8,7 @@ const AllArticles = () => {
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        fetch('https://assignment12-auth.web.app/articles')
+        fetch('https://assignment12-timestalk-server.vercel.app/articles')
             .then(res => res.json())
             .then(data => {
                 setCards(data);

@@ -15,4 +15,4 @@
 
 
 ## live Site link
-- https://assignment12-auth.web.app
+- https://assignment12-timestalk-server.vercel.app

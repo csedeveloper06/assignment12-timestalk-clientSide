@@ -34,16 +34,16 @@ const NavBar = () => {
           <NavLink to='/subscription'>Subscription</NavLink>
         </li>
         <li>
-          <Link to='/myarticles'>
+          <Link to='/premiumarticles'>
             <button className="btn btn-sm">
-                My Articles
+                Premium Articles
                 <BsCartFill className="text-2xl"></BsCartFill>
               <div className="badge badge-secondary">+{cart.length}</div>
             </button>
           </Link>
         </li>
         <li>
-          <NavLink to='/premiumarticles'>Premium Articles</NavLink>
+          <NavLink to='/myarticles'>My Articles</NavLink>
         </li>
 
         <li>
