@@ -3,6 +3,7 @@ import {  useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -11,9 +12,15 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const AddArticles = () => {
 
+
+    const {user} = useAuth();
     const { register, handleSubmit } = useForm();
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
+
+    const handleAddMyArticles = () => {
+        console.log('article add to the My Articles section');
+    }
 
     const onSubmit = async(data) =>{
         console.log(data);
@@ -25,17 +32,18 @@ const AddArticles = () => {
             }
         });
         if (res.data.success){
-                   // now send the menu item data to the server with the image url
+                   // now send the article item data to the server with the image url
                 const articleItem = {
                 title: data.title,
                 image: res.data.data.display_url,
                 tag: data.tag,
                 description: data.description,
                 publisher: data.publisher,
-                type: data.type,
-                authorName: data.authorName,
-                authorEmail: data.authorEmail,
-                authorImage: res.data.data.display_url
+                authorName: data.authorName.value,
+                authorEmail: data.authorEmail.value,
+                authorImage: res.data.data.display_url,
+                date:data.date,
+                isPremium:data.isPremium
                 }
                 const articleRes = await axiosSecure.post('/articles', articleItem);
                 console.log(articleRes.data)
@@ -47,10 +55,10 @@ const AddArticles = () => {
                         title: `${data.title} is added to the articles.`,
                         showConfirmButton: false,
                         timer: 1500
-                      });
+                    });
                 }
-         }
-            console.log( 'with image url', res.data);
+            }
+        console.log( 'with image url', res.data);
     };
 
     return (
@@ -120,7 +128,7 @@ const AddArticles = () => {
 
                     <div className="flex gap-3">
                              {/* Image */}
-                        <div className="form-control w-full my-6">
+                        {/* <div className="form-control w-full my-6">
                             <label className="label">
                                 <span className="label-text">Type*</span>
                             </label>
@@ -130,7 +138,7 @@ const AddArticles = () => {
                                 {...register('type', { required: true })}
                                 required
                                 className="input input-bordered w-full" />
-                        </div>
+                        </div> */}
 
                              {/* Article descriptions */}
                         <div className="form-control w-full">
@@ -150,6 +158,8 @@ const AddArticles = () => {
                                 type="text"
                                 placeholder="Article Author Name"
                                 {...register('authorName', { required: true })}
+                                value={user? user.displayName : ' '}
+                                readOnly
                                 required
                                 className="input input-bordered w-full" />
                         </div>
@@ -161,6 +171,8 @@ const AddArticles = () => {
                                 type="text"
                                 placeholder="Article Author Email"
                                 {...register('authorEmail', { required: true })}
+                                value={user? user.email : ' '}
+                                readOnly
                                 required
                                 className="input input-bordered w-full" />
                         </div>
@@ -169,10 +181,36 @@ const AddArticles = () => {
                             <label className="label">
                                 <span className="label-text">Article Auhor Image*</span>
                             </label>
-                             <input {...register('authorPhoto', { required: true })} type="file" className="file-input w-full max-w-xs" />
+                             <input {...register('authorPhoto', { required: true })}
+                                value={user? user.photoURL : " "}
+                                readOnly
+                             className="file-input w-full max-w-xs" />
                         </div>
                     </div>
-                   <input type="submit" value='Submit' className="btn btn-primary my-8 w-1/2 ml-60 text-2xl font-bold"/>
+                    <div className="flex gap-6">
+                        <div className="form-control w-full my-6">
+                            <label className="label">
+                                <span className="label-text">Article Posted Date*</span>
+                            </label>
+                            <input
+                                type="date"
+                                placeholder="Article Posted Date"
+                                {...register('date', { required: true })}
+                                required
+                                className="input input-bordered w-full" />
+                        </div>
+                        <div className="form-control w-full my-6">
+                            <label className="label">
+                                <span className="label-text">isPremium*</span>
+                            </label>
+                            <input
+                                type="text"
+                                {...register('isPremium', { required: true })}
+                                required
+                                className="input input-bordered w-full" />
+                        </div>
+                    </div>
+                   <input onClick={handleAddMyArticles} type="submit" value='Submit' className="btn btn-primary my-8 w-1/2 ml-60 text-2xl font-bold"/>
                 </form>
             </div>
         </div>

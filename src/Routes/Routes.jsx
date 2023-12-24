@@ -9,7 +9,6 @@ import Login from "../Pages/Login/Login";
 import AllArticles from "../Pages/AllArticles/AllArticles";
 import AddArticles from "../Pages/AddArticles/AddArticles";
 import SubsCription from "../Pages/SubsCription/SubsCription";
-import MyArticles from "../Pages/MyArticles/MyArticles";
 import PremiumArticles from "../Pages/PremiumArticles/PremiumArticles";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import ErrorPage from "../ErrorPage/ErrorPage";
@@ -20,6 +19,9 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AllPublishers from "../Pages/Dashboard/AllPublishers/AllPublishers";
 import AdminRoute from "./AdminRoute";
+import MyArticles from "../Pages/MyArticles/MyArticles";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
 
   export const router = createBrowserRouter([
@@ -47,7 +49,7 @@ import AdminRoute from "./AdminRoute";
         {
             path: '/carddetails/:_id',
             element: <CardDetails></CardDetails>,
-            loader: ()=> fetch('https://assignment12-timestalk-server.vercel.app/articles')
+            loader: ()=> fetch('http://localhost:5000/articles')
         },
         {
             path: '/addarticles',
@@ -70,6 +72,14 @@ import AdminRoute from "./AdminRoute";
             element: <MyProfile></MyProfile>
         },
         {
+          path: '/dashboard/payment',
+          element:<Payment></Payment>
+        },
+        {
+          path: '/dashboard/paymentHistory',
+          element:<PaymentHistory></PaymentHistory>
+        },
+        {
           path: 'dashboard',
           element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
           children: [
@@ -84,7 +94,7 @@ import AdminRoute from "./AdminRoute";
             {
               path: '/dashboard/allpublishers',
               element: <AdminRoute><AllPublishers></AllPublishers></AdminRoute>
-            }
+            },
           ]
         }
       ]

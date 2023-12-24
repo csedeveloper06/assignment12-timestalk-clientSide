@@ -111,8 +111,9 @@ const Register = () => {
                                 <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
                         </form>
-                        <p className="p-4">Already have an account ? <small className="text-blue-600 font-bold"> <Link to="/login">Login</Link></small></p>
-                        <SocialLogin></SocialLogin>
+                        <p className="p-4">Already have an account ? <small className="text-blue-600 font-bold"> 
+                            <Link to="/login">Login</Link></small></p>
+                            <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

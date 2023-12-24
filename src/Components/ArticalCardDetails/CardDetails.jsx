@@ -71,15 +71,15 @@ const CardDetails = () => {
             <Helmet>
                 <title>Times Talk | Article Details</title>
             </Helmet>
-            <figure><img className="w-80 h-80" src={image} /></figure>
+            <figure><img className="w-96 h-96 rounded-xl p-1" src={image} /></figure>
             <div className="card-body w-52">
-                <h2 className="card-title">{title}</h2>
-                <p>{description}</p>
-                <p>{tag}</p>
-                <p>{publisher}</p>
+                <h2 className="card-title text-yellow-700 font-bold text-3xl p-3">{title}</h2>
+                <p className="text-sm p-3 text-gray-500">{description}</p>
+                <p className="text-2xl text-red-500 font-bold">{tag}</p>
+                <p className="text-xl text-red-500 font-bold">{publisher}</p>
                 <div className="card-actions justify-start">
                       <button onClick={()=>handleAddToCart(article)} 
-                        className="btn btn-primary">Add To Cart
+                        className="btn btn-warning text-white text-2xl font-bold">Add To Cart
                       </button>
                 </div>
             </div>

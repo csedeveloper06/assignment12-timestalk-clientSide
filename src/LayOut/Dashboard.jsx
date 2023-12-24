@@ -56,6 +56,21 @@ const Dashboard = () => {
 
           {/* Shared nav links */}
           <div className="divider"></div>
+          {
+            <>
+              <li>
+                <NavLink to="/dashboard/payment">
+                  {/* <BsCartFill className="text-2xl"></BsCartFill> */}
+                  Payment
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/paymentHistory">
+                  PaymentHistory
+                </NavLink>
+              </li>
+            </>
+          }
         </ul>
       </div>
       {/* dashboard content */}
