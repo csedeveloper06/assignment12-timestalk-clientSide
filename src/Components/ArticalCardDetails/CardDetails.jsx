@@ -4,6 +4,8 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useCart from "../../hooks/useCart";
+import { useEffect } from "react";
+
 
 
 const CardDetails = () => {
@@ -11,9 +13,12 @@ const CardDetails = () => {
     const articles = useLoaderData();
 
     const {_id} = useParams();
+    console.log("article details page:",_id);
     const article = articles.find(article => article._id === _id);
+    const articleView = articles.find(article => article._id === _id);
     
     const {title, image, description,tag,publisher } = article;
+    // const {views } = articleView;
     console.log(article);
 
     const { user } = useAuth();
@@ -21,6 +26,23 @@ const CardDetails = () => {
     const location = useLocation();
     const axiosSecure = useAxiosSecure();
     const [, refetch] = useCart();
+
+    useEffect(()=>{
+       fetch(`http://localhost:5000/articles/${_id}`,{
+        method: 'PATCH',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(articleView)
+       })
+       .then(res => res.json())
+       .then(data => {
+        console.log(data);
+       })
+    },[_id,articleView])
+
+    const {views } = articleView;
+    console.log(views);
 
     const handleAddToCart = () =>{
         if (user && user.email){
