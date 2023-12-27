@@ -4,6 +4,7 @@ import Plans from "../Plans/Plans";
 import Statistics from "../Statistics/Statistics";
 import Testimonial from "../Testimonial/Testimonial";
 import Banner from "../Banner/Banner";
+import Publishers from "../Publishers/Publishers";
 
 
 
@@ -15,6 +16,7 @@ const Home = () => {
           </Helmet>
           <div>
             <Banner></Banner>
+            <Publishers></Publishers>
             <Gallery></Gallery> 
             <Plans></Plans>
             <Testimonial></Testimonial>
