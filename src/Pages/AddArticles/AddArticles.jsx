@@ -43,7 +43,8 @@ const AddArticles = () => {
                 authorEmail: data.authorEmail.value,
                 authorImage: res.data.data.display_url,
                 date:data.date,
-                isPremium:data.isPremium
+                isPremium:data.isPremium,
+                status:data.status
                 }
                 const articleRes = await axiosSecure.post('/articles', articleItem);
                 console.log(articleRes.data)
@@ -201,12 +202,24 @@ const AddArticles = () => {
                         </div>
                         <div className="form-control w-full my-6">
                             <label className="label">
-                                <span className="label-text">isPremium*</span>
+                                <span className="label-text">isPremium</span>
                             </label>
                             <input
                                 type="text"
                                 {...register('isPremium', { required: true })}
-                                required
+                                value="no"
+                                readOnly
+                                className="input input-bordered w-full" />
+                        </div>
+                        <div className="form-control w-full my-6">
+                            <label className="label">
+                                <span className="label-text">Status</span>
+                            </label>
+                            <input
+                                type="text"
+                                {...register('status', { required: true })}
+                                value="pending"
+                                readOnly
                                 className="input input-bordered w-full" />
                         </div>
                     </div>

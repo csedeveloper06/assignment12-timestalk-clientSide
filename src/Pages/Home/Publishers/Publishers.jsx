@@ -24,7 +24,7 @@ const Publishers = () => {
                 heading="Publishers"
             >
             </SectionTitle>
-            <div className="grid grid-cols-2 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-3">
                 {
                     publishers.map(publisher => <PublisherCard
                         key={publisher._id}

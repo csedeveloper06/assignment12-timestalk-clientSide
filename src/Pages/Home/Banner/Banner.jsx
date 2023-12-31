@@ -22,8 +22,8 @@ const Banner = () => {
 
     return (
       
-            <div className="p-10">
-                <Carousel className="mt-16">
+            <div className="p-5">
+                <Carousel className="mt-8">
                     {
                         trendingArticles
                                 .sort((a,b)=> a?.views > b?.views? -1 : 1 )
