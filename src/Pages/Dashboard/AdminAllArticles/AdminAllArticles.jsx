@@ -19,25 +19,6 @@ const AdminAllArticles = () => {
 
     console.log(articles);
 
-    // const handleIsPremium = id => {
-    //     axiosSecure.patch(`/articles/${id}`)
-    //     .then(res => {
-    //         console.log(id);
-    //         if (res.data.modifiedCount > 0) {
-    //             console.log(res.data);
-    //             refetch();
-    //             Swal.fire({
-    //                 position: "top-end",
-    //                 icon: "success",
-    //                 title: "Your Article is Premium Now!",
-    //                 showConfirmButton: false,
-    //                 timer: 1500
-    //               });
-    //         }
-    //     })
-
-    // }
-
     const handleArticleApproved = id => {
         axiosSecure.put(`/articles/${id}`)
         .then(res => {
@@ -48,7 +29,7 @@ const AdminAllArticles = () => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Your status has been changed",
+                    title: "Your status is Approved Now!",
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -56,21 +37,54 @@ const AdminAllArticles = () => {
         })
     }
 
-    // const handleArticleDeclined = id => {
-    //     axiosSecure.patch(`/articles/${id}`)
-    //     .then(res => {
-    //         if (res.data.modifiedCount > 0) {
-    //             refetch();
-    //             Swal.fire({
-    //                 position: "top-end",
-    //                 icon: "success",
-    //                 title: "Your status has been changed",
-    //                 showConfirmButton: false,
-    //                 timer: 1500
-    //             });
-    //         }
-    //     })
-    // }
+    const handleArticleDiclined = id => {
+        axiosSecure.patch(`/articles/${id}`)
+        .then(res => {
+            if (res.data.modifiedCount > 0) {
+                console.log(res.data);
+                console.log(id);
+                refetch();
+                Swal.fire({
+                    title: "Your Article is diclined now!",
+                    showClass: {
+                      popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `
+                    },
+                    hideClass: {
+                      popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                    }
+                  });
+            }
+        })
+    }
+
+
+    const handleIsPremium = id => {
+        axiosSecure.patch(`/articles/${id}`)
+        .then(res => {
+            console.log(id);
+            if(res.data.modifiedCount > 0) {
+                console.log(res.data);
+                refetch();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your Article is Premium Now!!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                
+            }
+        })
+
+    }
            
     const handleDelete = id =>{
         Swal.fire({
@@ -112,7 +126,7 @@ const AdminAllArticles = () => {
                         <th>Article Title</th>
                         <th>Author</th>
                         <th>date</th>
-                        {/* <th>Status</th> */}
+                        <th>Type</th>
                         <th>Publisher</th>
                         <th>Actions</th>
                     </tr>
@@ -144,7 +158,7 @@ const AdminAllArticles = () => {
                             <td>
                                 {article.date}
                             </td>
-                            {/* <td>{article.status}</td> */}
+                            <td>{article.isPremium}</td>
                             <td>{article.publisher}</td>
                             <td>
                                 <div className="gap-1">
@@ -159,15 +173,22 @@ const AdminAllArticles = () => {
 
                                     <div>
                                         {
-                                            article.status === 'declined' ? 
-                                            <span className="font-bold text-primary">Declined</span> :
-                                            <button onClick={() => handleArticleDeclined(article._id)}
-                                            className="btn btn-ghost btn-xs">Decline</button>
+                                            article.status === 'diclined' ? 
+                                            <span className="font-bold text-red-600">Diclined</span> :
+                                            <button onClick={() => handleArticleDiclined(article._id)}
+                                            className="btn btn-ghost btn-xs">Dicline</button> 
                                         }
                                     </div>
+
                                     <div>
-                                        <button onClick={() => handleIsPremium(article._id)}
-                                         className="btn btn-ghost btn-xs">Premium</button>
+
+                                        {
+                                              article.isPremium === 'yes' ? 
+                                              <span className="font-bold text-yellow-600">Premium!!</span> :
+                                              <button onClick={() => handleIsPremium(article._id)}
+                                              className="btn btn-ghost btn-xs">Premium</button>
+                                        }
+
                                     </div>
                                     <div className="avatar">
                                         <div className="mask mask-squircle w-8 h-8">

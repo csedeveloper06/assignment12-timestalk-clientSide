@@ -1,7 +1,4 @@
-
-import {
-    createBrowserRouter,
-  } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Main from "../LayOut/Main";
 import Home from "../Pages/Home/Home/Home";
 import Register from "../Pages/Register/Register";
@@ -23,80 +20,103 @@ import MyArticles from "../Pages/MyArticles/MyArticles";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
-
-  export const router = createBrowserRouter([
-    {
-      path: "/",
-      errorElement: <ErrorPage></ErrorPage>,
-      element:<Main></Main>,
-      children: [
-        {
-            path: '/',
-            element: <Home></Home>
-        },
-        {
-            path: '/register',
-            element: <Register></Register>
-        },
-        {
-          path: '/login',
-          element: <Login></Login>
-        },
-        {
-            path: '/allarticles',
-            element: <AllArticles></AllArticles>
-        },
-        {
-            path: '/carddetails/:_id',
-            element: <CardDetails></CardDetails>,
-            loader: ()=> fetch('http://localhost:5000/articles')
-        },
-        {
-            path: '/addarticles',
-            element: <AddArticles></AddArticles>
-        },
-        {
-            path: '/subscription',
-            element: <SubsCription></SubsCription>
-        },
-        {
-            path: '/myarticles',
-            element: <PrivateRoute><MyArticles></MyArticles></PrivateRoute>
-        },
-        {
-            path: '/premiumarticles',
-            element: <PrivateRoute><PremiumArticles></PremiumArticles></PrivateRoute>
-        },
-        {
-            path: '/myprofile',
-            element: <MyProfile></MyProfile>
-        },
-        {
-          path: '/dashboard/payment',
-          element:<Payment></Payment>
-        },
-        {
-          path: '/dashboard/paymentHistory',
-          element:<PaymentHistory></PaymentHistory>
-        },
-        {
-          path: 'dashboard',
-          element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-          children: [
-            {
-              path: '/dashboard/adminallarticles',
-              element: <AdminRoute><AdminAllArticles></AdminAllArticles></AdminRoute>
-            },
-            {
-              path: '/dashboard/allusers',
-              element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
-            },
-            {
-              path: '/dashboard/allpublishers',
-              element: <AdminRoute><AllPublishers></AllPublishers></AdminRoute>
-            },
-          ]
-        }
-      ]
-    }
-  ]);
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    errorElement: <ErrorPage></ErrorPage>,
+    element: <Main></Main>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/allarticles",
+        element: <AllArticles></AllArticles>,
+      },
+      {
+        path: "/carddetails/:_id",
+        element: <CardDetails></CardDetails>,
+        loader: () => fetch("https://assignment12-timestalk-server.vercel.app/articles"),
+      },
+      {
+        path: "/addarticles",
+        element: <AddArticles></AddArticles>,
+      },
+      {
+        path: "/subscription",
+        element: <SubsCription></SubsCription>,
+      },
+      {
+        path: "/myarticles",
+        element: (
+          <PrivateRoute>
+            <MyArticles></MyArticles>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/premiumarticles",
+        element: (
+          <PrivateRoute>
+            <PremiumArticles></PremiumArticles>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myprofile",
+        element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "/dashboard/payment",
+        element: <Payment></Payment>,
+      },
+      {
+        path: "/dashboard/paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard></Dashboard>
+          </PrivateRoute>
+        ),
+        children: [
+          {
+            path: "/dashboard/adminallarticles",
+            element: (
+              <AdminRoute>
+                <AdminAllArticles></AdminAllArticles>
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "/dashboard/allusers",
+            element: (
+              <AdminRoute>
+                <AllUsers></AllUsers>
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "/dashboard/allpublishers",
+            element: (
+              <AdminRoute>
+                <AllPublishers></AllPublishers>
+              </AdminRoute>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+]);

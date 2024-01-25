@@ -9,7 +9,7 @@ const Banner = () => {
     const [ trendingArticles, setTrendingArticles ] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/articles')
+        fetch('https://assignment12-timestalk-server.vercel.app/articles')
             .then(res => res.json())
             .then(data => setTrendingArticles(data))
     }, [])

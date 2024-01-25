@@ -10,7 +10,7 @@ const Publishers = () => {
     const [ publishers, setPublishers ] = useState([]);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/publishers')
+        fetch('https://assignment12-timestalk-server.vercel.app/publishers')
         .then(res => res.json())
         .then(data => setPublishers(data))
     }, [])

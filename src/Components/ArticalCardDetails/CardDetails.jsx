@@ -28,7 +28,7 @@ const CardDetails = () => {
     const [, refetch] = useCart();
 
     useEffect(()=>{
-       fetch(`http://localhost:5000/articles/${_id}`,{
+       fetch(`https://assignment12-timestalk-server.vercel.app/articles/${_id}`,{
         method: 'PATCH',
         headers: {
             'content-type': 'application/json'
