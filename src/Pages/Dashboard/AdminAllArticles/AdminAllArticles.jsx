@@ -67,7 +67,7 @@ const AdminAllArticles = () => {
 
 
     const handleIsPremium = id => {
-        axiosSecure.patch(`/articles/${id}`)
+        axiosSecure.put(`/articles/${id}`)
         .then(res => {
             console.log(id);
             if(res.data.modifiedCount > 0) {
